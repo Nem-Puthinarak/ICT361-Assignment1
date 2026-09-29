@@ -7,3 +7,11 @@
 | `predict.py` | Load the saved model and predict without retraining |
 | `requirements.txt` | Required packages |
 | `outputs/` | Saved model, evaluation results, and figures |
+
+## 3. Installation and Running
+
+```bash
+python -m pip install -r requirements.txt
+python data_prep.py
+python train.py
+python predict.py
