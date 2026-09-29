@@ -29,8 +29,7 @@ python predict.py
 | Classes | 10 (digits 0–9) |
 | Columns per CSV | 785: one `label` + 784 pixels |
 | Files | `mnist_train.csv`, `mnist_test.csv` |
-<<<<<<< HEAD
-=======
+
 
 60,000 training images and 10,000 test images.
 
