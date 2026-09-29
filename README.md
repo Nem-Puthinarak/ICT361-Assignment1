@@ -51,6 +51,7 @@ python predict.py
 
 
 # Sample image for each digit.
+![dataset shapes](outputs/sample_digits.png)
 
 
 
