@@ -185,8 +185,8 @@ The original preprocessing simply resized the entire photo to 28 × 28 pixels. T
 
 | Photo | Predicted | Confidence | P(true class 6) |
 |---|---|---:|---:|
-| `test-handwritten-num.jpg` (wide, tilted 6) | 3 | 94.91% | 0.00% |
-| `test2.jpg` (upright, blurry 6) | 3 | 92.90% | 0.00% |
+| ![dataset shapes](outputs/test-handwritten-num.jpg) (wide, tilted 6) | 3 | 94.91% | 0.00% |
+| ![dataset shapes](outputs/test2.jpg) (upright, blurry 6) | 3 | 92.90% | 0.00% |
 
 Both predictions were **wrong and confident**, even though the model achieved 92.61% accuracy on the MNIST test set.
 
@@ -200,8 +200,8 @@ The same model weights and the same photos were tested using two preprocessing m
 
 | Photo | Strokes | `--raw` | Default (crop and centre) |
 |---|---|---|---|
-| `test7-1.jpg` | Thick | 3 (91.41%), wrong | **7 (94.98%)**, correct |
-| `test7.jpg` | Thin | 3 (86.24%), wrong | **7 (70.94%)**, correct |
+| ![dataset shapes](outputs/test7-1.jpg) | Thick | 3 (91.41%), wrong | **7 (94.98%)**, correct |
+| ![dataset shapes](outputs/test7.jpg) | Thin | 3 (86.24%), wrong | **7 (70.94%)**, correct |
 
 ### What the Camera Test Shows
 
