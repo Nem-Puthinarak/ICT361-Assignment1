@@ -219,6 +219,18 @@ The same model weights and the same photos were tested using two preprocessing m
 
 Overall, high MNIST test accuracy does not guarantee correct predictions on camera images. Performance depends heavily on preparing the input so that it resembles the training data. The linear model also has limited ability to handle rotation, unusual handwriting, shifted digits, or non-digit inputs.
 
+**Common thread:** these examples contain unusual, slanted, or ambiguous handwriting that differs from the average MNIST digit patterns learned by the linear model.
+
+### Figures
+
+- **Test vs baseline accuracy:** ![dataset shapes](outputs/accuracy_baseline.png)
+- **Classification report:** ![dataset shapes](outputs/classification_report.png)
+- **Confusion matrix:** ![dataset shapes](outputs/confusion_matrix.png)  
+  Rows represent actual classes and columns represent predicted classes.
+- **Nine random test predictions:**![dataset shapes](outputs/predictions_9.png)
+  Green indicates correct predictions and red indicates incorrect predictions.
+- **Three incorrect predictions:** ![dataset shapes](outputs/incorrect_predictions.png)
+
 ### Incorrect Prediction Examples
 
 #### Test #3567: True 8, Predicted 5
@@ -244,18 +256,6 @@ The model was relatively uncertain compared with its 97–99% confidence on many
 The 5 is written sideways and heavily slanted, causing its main strokes to appear in unusual pixel positions. Raw-pixel logistic regression is not position- or rotation-invariant, so the learned template does not match it well.
 
 The long horizontal stroke at the top also resembles the crossbar of a 4.
-
-**Common thread:** these examples contain unusual, slanted, or ambiguous handwriting that differs from the average MNIST digit patterns learned by the linear model.
-
-### Figures
-
-- **Test vs baseline accuracy:** ![dataset shapes](outputs/accuracy_baseline.png)
-- **Classification report:** ![dataset shapes](outputs/classification_report.png)
-- **Confusion matrix:** ![dataset shapes](outputs/confusion_matrix.png)  
-  Rows represent actual classes and columns represent predicted classes.
-- **Nine random test predictions:**![dataset shapes](outputs/predictions_9.png)
-  Green indicates correct predictions and red indicates incorrect predictions.
-- **Three incorrect predictions:** ![dataset shapes](outputs/incorrect_predictions.png)
 
 ## 8. Saved Outputs
 
