@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 BASE_DIR = Path(__file__).resolve().parent
 
 DATA_DIR = Path(
@@ -13,7 +12,6 @@ DATA_DIR = Path(
 )
 
 CLASS_NAMES = [str(i) for i in range(10)]
-
 
 def find_csv(filename):
     file_path = DATA_DIR / filename
@@ -29,7 +27,6 @@ def find_csv(filename):
     raise FileNotFoundError(
         f"Could not find {filename} inside {DATA_DIR}"
     )
-
 
 def load_csv(filename):
     file_path = find_csv(filename)
@@ -75,7 +72,6 @@ def load_csv(filename):
 
     return X, y, pixel_columns.columns
 
-
 def prepare_data():
     X_train, y_train, train_columns = load_csv(
         "mnist_train.csv"
@@ -93,7 +89,6 @@ def prepare_data():
 
     return X_train, y_train, X_test, y_test
 
-
 def save_dataset_figures(
     X_train,
     y_train,
@@ -102,10 +97,6 @@ def save_dataset_figures(
 ):
     output_dir = BASE_DIR / "outputs"
     output_dir.mkdir(exist_ok=True)
-
-    # ---------------------------------------------------------
-    # Dataset shapes
-    # ---------------------------------------------------------
 
     fig, ax = plt.subplots(figsize=(8, 5))
 
@@ -141,10 +132,6 @@ def save_dataset_figures(
     )
 
     plt.close(fig)
-
-    # ---------------------------------------------------------
-    # One sample of each digit
-    # ---------------------------------------------------------
 
     fig, axes = plt.subplots(
         2,
@@ -183,7 +170,6 @@ def save_dataset_figures(
     )
 
     plt.close(fig)
-
 
 if __name__ == "__main__":
 
