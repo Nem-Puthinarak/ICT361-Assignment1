@@ -248,14 +248,14 @@ The long horizontal stroke at the top also resembles the crossbar of a 4.
 **Common thread:** these examples contain unusual, slanted, or ambiguous handwriting that differs from the average MNIST digit patterns learned by the linear model.
 
 ### Figures
-
-- **Test vs baseline accuracy:** `accuracy_baseline.png`
-- **Classification report:** `classification_report.png`
-- **Confusion matrix:** `confusion_matrix.png`  
+![dataset shapes](outputs/model_architecture.png)
+- **Test vs baseline accuracy:** ![dataset shapes](outputs/accuracy_baseline.png)
+- **Classification report:** ![dataset shapes](outputs/classification_report.png)
+- **Confusion matrix:** ![dataset shapes](outputs/confusion_matrix.png)  
   Rows represent actual classes and columns represent predicted classes.
-- **Nine random test predictions:** `predictions_9.png`  
+- **Nine random test predictions:**![dataset shapes](outputs/predictions_9.png)
   Green indicates correct predictions and red indicates incorrect predictions.
-- **Three incorrect predictions:** `incorrect_predictions.png`
+- **Three incorrect predictions:** ![dataset shapes](outputs/incorrect_predictions.png)
 
 ## 8. Saved Outputs
 
