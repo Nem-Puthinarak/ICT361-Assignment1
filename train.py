@@ -117,6 +117,8 @@ report = classification_report(
 )
 print(report)
 
+save_text_figure(report, "classification_report.png", "Classification Report", figsize=(8, 5))
+
 cm = confusion_matrix(y_true, y_pred, labels=list(range(10)))
 
 recall = cm.diagonal() / cm.sum(axis=1)
@@ -140,7 +142,7 @@ print("\n" + summary)
 save_text_figure(
     f"Test accuracy     : {accuracy:.2%}\nBaseline accuracy : {baseline_accuracy:.2%}\n"
     f"Correct           : {int((y_true == y_pred).sum())} / {len(y_true)}",
-    "accuracy_comparison.png", "Test vs Baseline Accuracy", figsize=(7, 2.5),
+    "accuracy_baseline.png", "Test vs Baseline Accuracy", figsize=(7, 2.5),
 )
 
 plt.figure(figsize=(8, 6))
@@ -173,7 +175,7 @@ for ax, k in zip(axes.flat, idx):
                  color="green" if t == p else "red", fontsize=10)
     ax.axis("off")
 plt.tight_layout()
-plt.savefig(OUTPUT_DIR / "predictions.png", dpi=150)
+plt.savefig(OUTPUT_DIR / "predictions_9.png", dpi=150)
 plt.close()
 
 wrong = np.where(y_true != y_pred)[0]
