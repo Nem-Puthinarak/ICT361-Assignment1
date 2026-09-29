@@ -49,6 +49,7 @@ python predict.py
 # Training and test shapes.
 ![Dataset Shapes](output/dataset%20shapes.png)
 
+
 # Sample image for each digit.
 
 
