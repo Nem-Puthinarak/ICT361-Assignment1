@@ -53,5 +53,75 @@ python predict.py
 # Sample image for each digit.
 ![dataset shapes](outputs/sample_digits.png)
 
+## 5. Workflow
+
+1. Download the MNIST CSV files using KaggleHub.
+2. Separate the pixel values (`X`) from the labels (`y`).
+3. Validate the data and scale pixel values to the range 0–1.
+4. Convert the data to tensors and create mini-batches using `DataLoader`.
+5. Train a single linear layer using cross-entropy loss and the Adam optimizer.
+6. Evaluate the model on the test set and compare its accuracy with a most-frequent-class baseline.
+7. Generate a loss plot, confusion matrix, and sample prediction visualisations.
+8. Save the trained model and evaluation results to `outputs/`.
 
 
+## 6. Model and Training
+
+```python
+class MNISTLogisticRegression(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.linear = nn.Linear(784, 10)
+
+    def forward(self, x):
+        return self.linear(x)
+```
+
+| Tensor | Shape |
+|---|---|
+| Input pixels | `(64, 784)` |
+| Output logits | `(64, 10)` |
+| Labels | `(64,)` |
+
+The model uses a single linear layer that maps 784 input pixel values to 10 output logits, one for each digit class (0–9). A batch size of 64 means 64 images are processed at once.
+
+Training uses **cross-entropy loss** with the **Adam optimiser**.
+
+### Model Architecture
+
+The model uses **784 inputs** because each 28 × 28 grayscale image contains 784 pixel values. It uses **10 outputs** because MNIST has 10 digit classes (0–9). Each output is a score (logit) for one digit class.
+
+The model has **7,850 trainable parameters**:
+
+`784 × 10 + 10 = 7,850`
+
+The predicted digit is the class with the highest output score.
+
+### Why CrossEntropyLoss?
+
+`CrossEntropyLoss` is used for multiclass classification. It compares the model's output logits with the correct digit label and penalises incorrect predictions.
+
+It applies `log-softmax` internally, so the model outputs raw logits without needing a separate softmax layer. Labels are stored as integer class indices using `torch.long`.
+
+### Training Settings
+
+| Setting | Value |
+|---|---|
+| Batch size | 64 |
+| Learning rate | 0.0005 |
+| Epochs | 40 |
+| Optimizer | Adam, `weight_decay=0.0001` |
+| Loss | `CrossEntropyLoss` |
+| Seed | 42 |
+
+### Training Loss
+
+The training loss decreased from **0.7037** in epoch 1 to **0.3756** in epoch 2 and **0.2500** in epoch 40, which is a **64.5% overall reduction**.
+
+Most of the improvement occurred during the first few epochs, with the loss decreasing from **0.7037 to 0.2962** by epoch 5. After that, the curve gradually flattened. For example, the loss was **0.2719** at epoch 10 and **0.2530** at epoch 30.
+
+This shows that the model learned quickly and then gradually converged. The small improvement during the later epochs suggests that additional training would provide limited benefit for this single linear layer. Training loss is not the same as error percentage, and the training-loss curve alone cannot determine whether the model is overfitting. The test results are used to evaluate performance on unseen data.
+
+![dataset shapes](outputs/model_architecture.png)
+![dataset shapes](outputs/training_settings.png)
+![dataset shapes](outputs/training_loss.png)
