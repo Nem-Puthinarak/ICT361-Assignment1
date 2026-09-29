@@ -38,20 +38,23 @@ def _crop_center(path):
     """Camera photo -> MNIST-style 28x28: subtract paper background, keep the
     main stroke blob, crop, pad to square, resize to 20x20, centre in 28x28."""
     from scipy import ndimage as ndi
-    g = np.array(Image.open(path).convert("L"), dtype=np.float32)
-    bg = ndi.gaussian_filter(ndi.median_filter(g[::4, ::4], size=15), 1)
+    img = ImageOps.exif_transpose(Image.open(path)).convert("L")   # phone photos: honour EXIF rotation
+    img.thumbnail((512, 512), Image.LANCZOS)                        # fixed working size: filters below are in pixels
+    g = np.array(img, dtype=np.float32)
+    bg = ndi.gaussian_filter(ndi.grey_closing(g[::4, ::4], size=(11, 11)), 1)   # removes dark strokes, follows lighting gradients
     bg = np.array(Image.fromarray(bg).resize(g.shape[::-1], Image.BILINEAR))
     d = ndi.gaussian_filter(np.clip(bg - g, 0, None), 1.5)   # dark ink on lighter paper
     d[:8], d[-8:], d[:, :8], d[:, -8:] = 0, 0, 0, 0
     if d.max() < 1e-6:
         return None
-    mask = d > 0.35 * d.max()
-    lab, n = ndi.label(mask, structure=np.ones((3, 3)))
+    mask = d > 0.25 * d.max()
+    joined = ndi.binary_dilation(mask, structure=np.ones((3, 3)), iterations=6)   # merge broken/hatched strokes
+    lab, n = ndi.label(joined)
     sizes = ndi.sum(mask, lab, range(1, n + 1))
     edge = set(np.unique(np.concatenate([lab[:15].ravel(), lab[-15:].ravel(),
                                          lab[:, :15].ravel(), lab[:, -15:].ravel()])))
     ok = [i for i in range(1, n + 1) if i not in edge] or list(range(1, n + 1))
-    mask = lab == max(ok, key=lambda i: sizes[i - 1])         # drop stray marks
+    mask = (lab == max(ok, key=lambda i: sizes[i - 1])) & mask     # main digit only, drop stray marks
     ys, xs = np.where(mask)
     crop = (d * mask)[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
     h, w = crop.shape
