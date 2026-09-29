@@ -1,0 +1,34 @@
+Test Accuracy: 92.6100%
+Baseline Accuracy: 11.3500%
+
+Highest recall: digit 0 (98.16%)
+Lowest recall : digit 5 (85.54%)
+
+Most confused digit pairs:
+3 and 5: 65 errors (3 predicted as 5: 21; 5 predicted as 3: 44)
+4 and 9: 60 errors (4 predicted as 9: 34; 9 predicted as 4: 26)
+7 and 9: 53 errors (7 predicted as 9: 33; 9 predicted as 7: 20)
+5 and 8: 53 errors (5 predicted as 8: 33; 8 predicted as 5: 20)
+2 and 8: 46 errors (2 predicted as 8: 40; 8 predicted as 2: 6)
+
+Incorrect examples shown:
+#3567: true 8, predicted 5
+#1039: true 7, predicted 9
+#7888: true 5, predicted 4
+
+              precision    recall  f1-score   support
+
+           0     0.9553    0.9816    0.9683       980
+           1     0.9678    0.9789    0.9733      1135
+           2     0.9371    0.8944    0.9152      1032
+           3     0.8941    0.9198    0.9068      1010
+           4     0.9300    0.9338    0.9319       982
+           5     0.9182    0.8554    0.8857       892
+           6     0.9412    0.9520    0.9465       958
+           7     0.9348    0.9202    0.9275      1028
+           8     0.8726    0.9004    0.8863       974
+           9     0.9047    0.9128    0.9087      1009
+
+    accuracy                         0.9261     10000
+   macro avg     0.9256    0.9249    0.9250     10000
+weighted avg     0.9262    0.9261    0.9259     10000

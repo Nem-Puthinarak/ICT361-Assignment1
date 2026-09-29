@@ -1,0 +1,7 @@
+Batch size    : 64
+Learning rate : 0.0005
+Epochs        : 40
+Optimizer     : Adam (weight_decay=0.0001)
+Loss function : CrossEntropyLoss
+Seed          : 42
+Device        : cuda

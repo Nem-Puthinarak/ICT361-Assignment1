@@ -1,0 +1,7 @@
+MNISTLogisticRegression(
+  (linear): Linear(in_features=784, out_features=10, bias=True)
+)
+
+Input size : 784
+Output size: 10
+Trainable parameters: 7850 (784 x 10 weights + 10 biases)
