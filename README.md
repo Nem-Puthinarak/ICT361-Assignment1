@@ -64,7 +64,7 @@ python predict.py
 8. Save the trained model and evaluation results to `outputs/`.
 
 
-## 6. Model and Training
+## Model and Training
 
 ```python
 class MNISTLogisticRegression(nn.Module):
@@ -217,8 +217,6 @@ The same model weights and the same photos were tested using two preprocessing m
    Stroke thickness can affect the score, but the overall shape determines which digit receives the highest score. A thick but unclear digit can still produce a confident incorrect prediction.
 
 Overall, high MNIST test accuracy does not guarantee correct predictions on camera images. Performance depends heavily on preparing the input so that it resembles the training data. The linear model also has limited ability to handle rotation, unusual handwriting, shifted digits, or non-digit inputs.
-
-**Common thread:** these examples contain unusual, slanted, or ambiguous handwriting that differs from the average MNIST digit patterns learned by the linear model.
 
 ### Figures
 
