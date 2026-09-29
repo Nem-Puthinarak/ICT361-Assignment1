@@ -47,5 +47,4 @@ python predict.py
    The training set is used to update the model weights, while the test set must remain unseen during training so it can measure how well the model generalises to unseen data. Mixing the two can causes data leakage (data contamination). It may cheats by memorizing the answers it is supposed to be tested on.
 
 
-`load_csv` also validates that each file exists and is non-empty, contains one `label` column plus 784 pixel columns, has labels in the range 0–9, and has finite pixel values within 0–255.
->>>>>>> d0bf46b193cd2d451fb43ab29a2c50bae5be1c97
+
