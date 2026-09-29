@@ -248,7 +248,7 @@ The long horizontal stroke at the top also resembles the crossbar of a 4.
 **Common thread:** these examples contain unusual, slanted, or ambiguous handwriting that differs from the average MNIST digit patterns learned by the linear model.
 
 ### Figures
-![dataset shapes](outputs/model_architecture.png)
+
 - **Test vs baseline accuracy:** ![dataset shapes](outputs/accuracy_baseline.png)
 - **Classification report:** ![dataset shapes](outputs/classification_report.png)
 - **Confusion matrix:** ![dataset shapes](outputs/confusion_matrix.png)  
