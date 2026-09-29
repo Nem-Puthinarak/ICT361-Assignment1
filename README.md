@@ -8,7 +8,7 @@
 | `requirements.txt` | Required packages |
 | `outputs/` | Saved model, evaluation results, and figures |
 
-## 3. Installation and Running
+## Installation and Running
 
 ```bash
 python -m pip install -r requirements.txt
@@ -16,7 +16,7 @@ python data_prep.py
 python train.py
 python predict.py
 ```
-## 4. Dataset and Preprocessing
+## Dataset and Preprocessing
 
 **Dataset:** `kagglehub.dataset_download("oddrationale/mnist-in-csv")`
 
@@ -53,7 +53,7 @@ python predict.py
 # Sample image for each digit.
 ![dataset shapes](outputs/sample_digits.png)
 
-## 5. Workflow
+## Workflow
 
 1. Download the MNIST CSV files using KaggleHub.
 2. Separate the pixel values (`X`) from the labels (`y`).
@@ -126,7 +126,7 @@ This shows that the model learned quickly and then gradually converged. The smal
 ![dataset shapes](outputs/training_settings.png)
 ![dataset shapes](outputs/training_loss.png)
 
-## 7. Evaluation and Predictions
+## Evaluation and Predictions
 
 Evaluation runs with `model.eval()` and `torch.no_grad()`. Softmax converts logits into probabilities, and `argmax` selects the digit with the highest probability. A high probability is an estimate, not a guarantee.
 
@@ -257,7 +257,7 @@ The 5 is written sideways and heavily slanted, causing its main strokes to appea
 
 The long horizontal stroke at the top also resembles the crossbar of a 4.
 
-## 8. Saved Outputs
+## Saved Outputs
 
 | File | Contents |
 |---|---|
@@ -273,3 +273,29 @@ The long horizontal stroke at the top also resembles the crossbar of a 4.
 The `state_dict` stores only the model parameters. `predict.py` recreates the same architecture and layer name (`linear`) before loading the saved weights.
 
 `predict.py` does not import `train.py`, because importing `train.py` would execute its top-level training code and retrain the model.
+
+## Predicting a New Image
+
+`predict.py` prepares a camera photo before running the model:
+
+1. Convert the image to grayscale and resize it to a fixed working size while honouring the phone's EXIF rotation.
+2. Estimate the paper background and subtract it so that only the dark ink remains.
+3. Keep the main digit stroke and remove stray marks near the border.
+4. Crop to the digit, pad it to a square, resize it to 20 × 20, and centre it in a 28 × 28 image to match the MNIST format. The digit is white on black and scaled to the range 0–1.
+5. Flatten the image to `(1, 784)`, run the model, apply softmax, and use `argmax` to select the predicted digit.
+
+To use the default preprocessing:
+
+```bash
+python predict.py --image path/to/digit.png
+```
+
+To skip the crop-and-centre preprocessing and use a plain 28 × 28 resize:
+
+```bash
+python predict.py --image path/to/digit.png --raw
+```
+
+`--raw` skips steps 2–4 and uses a plain resize to 28 × 28. It also applies autocontrast and can invert the image when the background is light.
+
+The difference between the default and `--raw` preprocessing is demonstrated in **Section: Evaluation and Predictions**.
