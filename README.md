@@ -46,5 +46,10 @@ python predict.py
 4. **Why must training and test data remain separate?**  
    The training set is used to update the model weights, while the test set must remain unseen during training so it can measure how well the model generalises to unseen data. Mixing the two can causes data leakage (data contamination). It may cheats by memorizing the answers it is supposed to be tested on.
 
+# Training and test shapes.
+![Dataset Shapes](output/dataset%20shapes.png)
+
+# Sample image for each digit.
+
 
 
