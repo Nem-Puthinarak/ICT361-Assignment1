@@ -161,14 +161,14 @@ Some pairs are strongly directional. For example, digit 5 is mistaken for 3 twic
 
 ### Causes of Incorrect Predictions
 
-- A linear model learns one weight template per digit and has no spatial reasoning.
-- Similar digit shapes overlap heavily in pixel space, particularly 4/9 and 3/5/8.
-- Unusual handwriting, slant, and stroke thickness can cross the linear decision boundaries.
-- Shifted or rotated digits change which pixel positions contain useful information.
+- A linear model learns one weight template per digit and has no spatial reasoning
+- Similar digit shapes overlap heavily in pixel space, particularly 4/9 and 3/5/8
+- Unusual handwriting, slant and stroke thickness can cross the linear decision boundaries
+- Shifted or rotated digits change which pixel positions contain useful information
 
 ### Does High Test Accuracy Guarantee Correct Camera Predictions?
 
-No. MNIST digits are centred, size-normalised, clean, and presented as white-on-black images. Camera images can differ in lighting, background, contrast, colour, stroke width, rotation, scale, and position.
+No, MNIST digits are centred, size-normalised, clean and presented as white-on-black images. Camera images can differ in lighting, background, contrast, colour, stroke width, rotation, scale, and position.
 
 This distribution shift can significantly reduce performance when using a linear model on raw pixels. `predict.py` autocontrasts, auto-inverts, and resizes the image, but the original preprocessing did not crop or centre the digit.
 
